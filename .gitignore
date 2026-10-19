@@ -1,0 +1,41 @@
+# IDE settings
+.idea/
+.vscode/
+*.iml
+
+# Local AI instructions
+AGENTS.md
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.template
+application-local.properties
+application-local.yml
+application-local.yaml
+secrets/
+*.pem
+*.key
+
+# Java / Maven build output
+**/target/
+.mvn-cache/
+
+# Angular / Node build output
+**/node_modules/
+**/dist/
+**/.angular/
+npm-debug.log*
+
+# Logs
+*.log
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test and coverage output
+**/coverage/
+**/test-results/
