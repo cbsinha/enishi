@@ -13,6 +13,8 @@ Each service should have a clear responsibility, API boundary, authorization rul
 - Communicates with backend services through HTTP APIs.
 - Uses RxJS and Angular Signals where appropriate.
 - Integrates with Clerk for hosted authentication and session management.
+- Uses `ngx-clerk` v1.0.0, an unofficial community-maintained Angular SDK.
+- Uses Clerk's Angular integration to track session state, protect frontend routes, and retrieve session tokens.
 
 ### Trip Service — Phase 1
 Responsible for:
@@ -47,15 +49,22 @@ Travel profiles, AI-assisted planning, notifications, and live hangouts will be 
 
 Clerk handles hosted sign-up/sign-in, sessions, and token issuance.
 
+The Angular frontend uses `ngx-clerk` v1.0.0. The integration's `ClerkService.getToken()` method has been manually verified to return a session token when a user is signed in.
+
 For protected backend APIs:
+
 1. Angular obtains an appropriate Clerk-issued token.
-2. The frontend sends the token in the HTTP `Authorization: Bearer` header.
+2. The frontend sends the token in the HTTP `Authorization: Bearer <token>` header.
 3. Spring Security OAuth2 Resource Server validates the JWT using the configured issuer and signing-key/JWKS settings.
 4. Service-level logic enforces authorization for the requested resource and action.
+
+The frontend has verified token retrieval. A protected request to an Enishi backend endpoint has not yet been verified as part of this frontend integration work.
 
 Do not create a custom JWT issuer or add JJWT solely to validate Clerk tokens.
 
 Authentication establishes identity; it does not automatically grant access to a trip or its data.
+
+Frontend route guards improve navigation and user experience but must never be treated as the backend's security boundary.
 
 ## 4. User Identity Mapping
 

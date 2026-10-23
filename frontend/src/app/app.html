@@ -1,6 +1,14 @@
-
 <main class="app-shell">
   <h1>Enishi</h1>
   <p>Plan your next journey together.</p>
+
+  @if (!clerk.isLoaded()) {
+    <p>Checking authentication...</p>
+  } @else if (clerk.isSignedIn()) {
+    <p>You are signed in.</p>
+  } @else {
+    <p>You are signed out.</p>
+  }
+
   <router-outlet />
 </main>
