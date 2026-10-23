@@ -23,7 +23,13 @@ Protected endpoints require a valid Clerk-issued bearer token:
 
 `Authorization: Bearer <token>`
 
+The Angular frontend uses `ngx-clerk` v1.0.0 to integrate with Clerk. When a protected API request needs authentication, the frontend can retrieve the active session token through `ClerkService.getToken()`.
+
+The returned token should be sent in the `Authorization` header as a bearer token. The frontend must not log or unnecessarily expose token values.
+
 Spring Security OAuth2 Resource Server validates the token. The service then performs its own authorization checks.
+
+The frontend's ability to retrieve a token does not mean a backend endpoint has accepted it. Backend validation and resource authorization must be implemented and tested separately.
 
 Public endpoints should be explicitly identified rather than assumed to be public.
 
