@@ -18,6 +18,9 @@ secrets/
 *.pem
 *.key
 
+# Local Angular environment configuration
+/frontend/src/environments/environment.ts
+
 # Java / Maven build output
 **/target/
 .mvn-cache/
